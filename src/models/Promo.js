@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     details:{
-        type: DataTypes.ENUM("Publicado","No publicado","Archivado"),
+        type: DataTypes.STRING,
     },
   },{timestamps:false});
 };

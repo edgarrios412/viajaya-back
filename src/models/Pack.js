@@ -14,6 +14,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    lat: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    lng: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     price:{
         type: DataTypes.INTEGER,
     },

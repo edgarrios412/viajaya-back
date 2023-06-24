@@ -1,4 +1,5 @@
 const {User} = require("../db")
+const jwt = require("jsonwebtoken")
 
 module.exports = {
     getUsers: async () => {
@@ -35,5 +36,29 @@ module.exports = {
             await user.destroy()
             return "Usuario eliminado con exito"
         }else return "No encontramos el usuario"
+    },
+    authUser: async ({email,password}) => {
+        const user = await User.findOne({
+            where:{
+                email:email,
+                password:password
+            }
+        })
+        if(user){
+            const token = jwt.sign({name:user.name, id:user.id}, 'shhhhh');
+            return {message:true, id:user.id, token}
+        }else return {message:false}
+    },
+    getUserById: async (id) => {
+        const user = await User.findOne({
+            where:{
+                id:id
+            }
+        })
+        return user
+    },
+    verifyToken: async (token) => {
+        const decoded = jwt.verify(token, 'shhhhh');
+        return decoded
     }
 }
