@@ -14,8 +14,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    created:{
+      type: DataTypes.STRING
+    },
     status:{
-        type: DataTypes.ENUM("Publicado","No publicado","Archivado"),
+        type: DataTypes.BOOLEAN,
+        defaultValue:true
     },
   },{timestamps:false});
 };

@@ -14,7 +14,7 @@ module.exports = {
         if(clase){
             if(clas.title) clase.title = clas.title
             if(clas.link) clase.link = clas.link
-            if(clas.status) clase.status = clas.status
+            if(clas.status) clase.status = !clase.status
             await clase.save()
             return "Clase actualizado"
         }else return "No lo encontramos"

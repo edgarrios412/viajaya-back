@@ -20,11 +20,12 @@ module.exports = {
             }
         })
         if(pack){
+            if(p.status) pack.status = !pack.status
             if(p.title) pack.title = p.title
             if(p.detail) pack.detail = p.detail
             if(p.price) pack.price = p.price
             await pack.save()
-            return "Paquete actualizado"
+            return pack
         }else return "No lo encontramos"
     },
     postPack: async (pack) => {
