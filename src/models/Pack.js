@@ -25,5 +25,9 @@ module.exports = (sequelize) => {
     price:{
         type: DataTypes.INTEGER,
     },
+    images:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: []
+    }
   },{timestamps:false});
 };

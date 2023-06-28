@@ -5,6 +5,14 @@ module.exports = {
         const packs = await Pack.findAll()
         return packs
     },
+    getPackById: async (id) => {
+        const packs = await Pack.findOne({
+            where:{
+                id:id
+            }
+        })
+        return packs
+    },
     putPack: async (p) => {
         const pack = await Pack.findOne({
             where:{

@@ -18,6 +18,7 @@ module.exports = {
             if(u.email) user.email = u.email
             if(u.phone) user.phone = u.phone
             if(u.password) user.password = u.password
+            if(u.role) user.role = u.role
             await user.save()
             return "Usuario actualizado"
         }else return "No lo encontramos"
