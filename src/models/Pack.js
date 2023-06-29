@@ -10,6 +10,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    days:{
+      type: DataTypes.INTEGER,
+    },
+    location:{
+      type: DataTypes.STRING
+    },
+    city:{
+      type: DataTypes.STRING
+    },
     status:{
       type: DataTypes.BOOLEAN,
       defaultValue: "true"
