@@ -1,6 +1,6 @@
 const {Router} = require("express")
 
-const {getPacks, getPackById, postPack, putPack, deletePack} = require("../controllers/packController")
+const {getPacks, getPackById, postPack, putPack, deletePack, getChars} = require("../controllers/packController")
 
 const packRoutes = Router()
 
@@ -8,6 +8,16 @@ packRoutes.get("/", async (req,res) => {
     // Traer todos los paquete
     try {
         const pack = await getPacks()
+        res.status(200).json(pack)
+    } catch (error) {
+        res.status(404).json({message:error})
+    }
+})
+
+packRoutes.get("/chars", async (req,res) => {
+    // Traer todos los paquete
+    try {
+        const pack = await getChars()
         res.status(200).json(pack)
     } catch (error) {
         res.status(404).json({message:error})

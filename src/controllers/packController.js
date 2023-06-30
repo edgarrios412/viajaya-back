@@ -1,14 +1,28 @@
-const {Pack} = require("../db")
+const {Pack,Char} = require("../db")
 
 module.exports = {
     getPacks: async () => {
-        const packs = await Pack.findAll()
+        const packs = await Pack.findAll({
+            include:{
+            model: Char,
+            attributes: ['name'],
+            through: { attributes: [] }
+        }})
         return packs
+    },
+    getChars: async () => {
+        const chars = await Char.findAll()
+        return chars
     },
     getPackById: async (id) => {
         const packs = await Pack.findOne({
             where:{
                 id:id
+            },
+            include:{
+                model: Char,
+                attributes: ['name'],
+                through: { attributes: [] }
             }
         })
         return packs
@@ -29,7 +43,8 @@ module.exports = {
         }else return "No lo encontramos"
     },
     postPack: async (pack) => {
-        await Pack.create(pack)
+        const newPack = await Pack.create(pack)
+        await newPack.addChars(pack.chars)
         return "Paquete creado con exito"
     },
     deletePack: async (id) => {
