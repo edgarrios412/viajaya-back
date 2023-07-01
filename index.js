@@ -2,13 +2,14 @@ const app = require("./src/app.js")
 const {conn} = require("./src/db.js")
 const {Promo, Char} = require("./src/db.js")
 
-conn.sync({force:true}).then(() =>{
+conn.sync({alter:true}).then(() =>{
     app.listen(3001, () => {
         Char.create({name:"Wifi"})
         Char.create({name:"Parqueadero"})
         Char.create({name:"Piscina"})
         Char.create({name:"Jacuzzi"})
         Char.create({name:"Cama Doble"})
+        Char.create({name:"Gimnasio"})
         Promo.create({
             title:"Mi promo",
             details:"Texto de ejemplo",

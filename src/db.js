@@ -2,8 +2,9 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const {DB} = process.env
 
-const sequelize = new Sequelize("postgres://postgres:admin@localhost:5432/viajaya", {
+const sequelize = new Sequelize("postgres://edgarrios412:M16cY6oxZQk2A8Zo4jslTs5i4YpoP0jB@dpg-cig2odd9aq012et8kvn0-a.oregon-postgres.render.com:5432/vi?ssl=true", {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   });
@@ -26,7 +27,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Char, Pack } = sequelize.models;
+const { Char, Pack, Item, User } = sequelize.models;
 
 const packChar = sequelize.define('pack_char', {
   // Definición de otros campos de la tabla intermedia
@@ -36,6 +37,11 @@ const packChar = sequelize.define('pack_char', {
 
 Pack.belongsToMany(Char, { through: packChar})
 Char.belongsToMany(Pack, { through: packChar})
+
+User.hasMany(Item)
+
+Item.belongsTo(Pack)
+Pack.hasMany(Item)
 
   module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
