@@ -1,5 +1,6 @@
 const {Router} = require("express")
 const {postBuy, getBuy} = require("../controllers/buyController")
+const sendMail = require("../helpers/sendMail")
 
 const buyRoutes = Router()
 
@@ -7,6 +8,7 @@ buyRoutes.post("/", async (req,res) => {
     // Traer la promo
     const buy = req.body
         try {
+            sendMail(buy.email)
             const buys = await postBuy(buy)
             res.status(200).json(buys)
         } catch (error) {

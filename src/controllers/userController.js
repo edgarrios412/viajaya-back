@@ -46,7 +46,7 @@ module.exports = {
             }
         })
         if(user){
-            const token = jwt.sign({name:user.name, id:user.id}, 'shhhhh');
+            const token = jwt.sign({name:user.name,email:user.email, id:user.id}, 'shhhhh');
             return {message:true, id:user.id, token}
         }else return {message:false}
     },
