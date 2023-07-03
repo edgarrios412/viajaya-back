@@ -8,7 +8,7 @@ buyRoutes.post("/", async (req,res) => {
     // Traer la promo
     const buy = req.body
         try {
-            sendMail(buy.email)
+            sendMail(buy)
             const buys = await postBuy(buy)
             res.status(200).json(buys)
         } catch (error) {

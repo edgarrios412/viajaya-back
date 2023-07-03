@@ -1,6 +1,6 @@
 const {Router} = require("express")
 const {getUsers, putUser, postUser, deleteUser, authUser, getUserById, verifyToken} = require("../controllers/userController")
-
+const sendMail = require("../helpers/sendMailContact")
 const userRoutes = Router()
 
 userRoutes.get("/", async (req,res) => {
@@ -8,6 +8,16 @@ userRoutes.get("/", async (req,res) => {
     try {
         const users = await getUsers()
         res.status(200).json(users)
+    } catch (error) {
+        res.status(404).json({message:error})
+    }
+})
+
+userRoutes.post("/contact", async (req,res) => {
+    // Traer todos los usuarios
+    try {
+        sendMail(req.body)
+        res.status(200).json({message:"Email enviado"})
     } catch (error) {
         res.status(404).json({message:error})
     }
