@@ -38,6 +38,12 @@ module.exports = {
             if(p.title) pack.title = p.title
             if(p.detail) pack.detail = p.detail
             if(p.price) pack.price = p.price
+            if(p.days) pack.days = p.days
+            if(p.location) pack.location = p.location
+            if(p.city) pack.city = p.city
+            if(p.lat) pack.lat = p.lat
+            if(p.lng) pack.lng = p.lng
+            if(p.images) pack.images = p.images
             await pack.save()
             return pack
         }else return "No lo encontramos"

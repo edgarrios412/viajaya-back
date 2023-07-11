@@ -14,6 +14,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    image:{
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "https://cdn.landesa.org/wp-content/uploads/default-user-image.png"
+    },
     email:{
       type: DataTypes.STRING,
     },
