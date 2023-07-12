@@ -20,6 +20,9 @@ module.exports = (sequelize) => {
     comprado:{
         type: DataTypes.STRING,
     },
+    reserva:{
+      type: DataTypes.BOOLEAN,
+    },
     person:{
         type: DataTypes.INTEGER,
     },

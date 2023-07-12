@@ -28,6 +28,7 @@ module.exports = async (info) => {
         subject: "Comprobante de pago", // Subject line
         html: `
         <h2>Comprobante de pago</h2>
+        ${info.reserva ? "<p><b>Pago de reserva</b></p>":"<p><b>Pago completo</b></p>"}
         <br></br>
         <p><b>ID de la transacción </b>${info.transaction.id}</p>
         <p><b>Referencia:</b> ${info.transaction.reference}</p>
