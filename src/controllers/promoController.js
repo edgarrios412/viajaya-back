@@ -20,6 +20,7 @@ module.exports = {
             if(p.image) promo.image = p.image
             if(p.details) promo.details = p.details
             if(p.price) promo.price = p.price
+            if(p.fechas) promo.fechas = p.fechas
             await promo.save()
             return "Promo actualizada"
         }else return "No lo encontramos"

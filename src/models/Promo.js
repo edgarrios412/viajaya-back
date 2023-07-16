@@ -18,6 +18,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    fechas:{
+      type: DataTypes.ARRAY(DataTypes.STRING)
+    },
     details:{
         type: DataTypes.STRING,
     },

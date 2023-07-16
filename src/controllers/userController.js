@@ -25,8 +25,17 @@ module.exports = {
         }else return "No lo encontramos"
     },
     postUser: async (user) => {
+        const userr = await User.findOne({
+            where:{
+                email:user.email
+            }
+        })
+        if(userr){
+            throw Error("Email existente")
+        }else{
         await User.create(user)
         return "Usuario creado con exito"
+        }
     },
     deleteUser: async (id) => {
         const user = await User.findOne({

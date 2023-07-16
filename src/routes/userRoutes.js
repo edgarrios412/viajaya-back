@@ -52,7 +52,7 @@ userRoutes.post("/", async (req,res) => {
         const users = await postUser(user)
         res.status(200).json({message:users})
     } catch (error) {
-        res.status(404).json({message:error})
+        res.status(404).json({mensaje:error})
     }
 })
 
