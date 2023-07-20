@@ -21,6 +21,7 @@ module.exports = {
             if(p.details) promo.details = p.details
             if(p.price) promo.price = p.price
             if(p.fechas) promo.fechas = p.fechas
+            if(p.days) promo.days = p.days
             await promo.save()
             return "Promo actualizada"
         }else return "No lo encontramos"
