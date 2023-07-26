@@ -12,15 +12,23 @@ module.exports = async (info) => {
         }
       });
       console.log(info.passenger)
-      const pasajeros = Array.from({ length: info.person }, (_, index) => (
-        `<p className={style.passenger}>Pasajero ${index+1}</p>
+      const pasajeros = Array.from({ length: info.person }, (_, index) => {
+        if(index == 0) return (`<p className={style.passenger}>Titular</p>
         <p><b>Nombre:</b> ${info.passenger[`name${index+1}`]}</p>
         <p><b>Documento:</b> ${info.passenger[`doc${index+1}`]}</p>
         <p><b>Telefono:</b> ${info.passenger[`phone${index+1}`]}</p>
         <p><b>Email:</b> ${info.passenger[`mail${index+1}`]}</p>
+        <p><b>Direccion:</b> ${info.passenger[`location${index+1}`]}</p>
+        <p><b>Fecha de nacimiento:</b> ${info.passenger[`date${index+1}`]}</p>
         <br></br>
-        `
-      ))
+        `)
+        return(`<p className={style.passenger}>Pasajero ${index+1}</p>
+        <p><b>Nombre:</b> ${info.passenger[`name${index+1}`]}</p>
+        <p><b>Documento:</b> ${info.passenger[`doc${index+1}`]}</p>
+        <p><b>Fecha de nacimiento:</b> ${info.passenger[`date${index+1}`]}</p>
+        <br></br>
+        `)
+      })
 
       await transporter.sendMail({
         from: '"Viaja Ya!" <viajaya@gmail.com>', // sender address

@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING)
     },
     details:{
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
     },
   },{timestamps:false});
 };

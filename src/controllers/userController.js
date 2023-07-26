@@ -37,6 +37,14 @@ module.exports = {
         return "Usuario creado con exito"
         }
     },
+    recoveryPass: async (email) => {
+        const user = await User.findOne({
+            where:{
+                email:email
+            }
+        })
+        return user
+    },
     deleteUser: async (id) => {
         const user = await User.findOne({
             where:{

@@ -1,6 +1,7 @@
 const {Router} = require("express")
-const {getUsers, putUser, postUser, deleteUser, authUser, getUserById, verifyToken} = require("../controllers/userController")
+const {getUsers, putUser, postUser, deleteUser, authUser, getUserById, verifyToken, recoveryPass} = require("../controllers/userController")
 const sendMail = require("../helpers/sendMailContact")
+const Recovery = require("../helpers/Recovery")
 const userRoutes = Router()
 
 userRoutes.get("/", async (req,res) => {
@@ -39,6 +40,18 @@ userRoutes.get("/:id", async (req,res) => {
     const {id} = req.params
     try {
         const users = await getUserById(id)
+        res.status(200).json(users)
+    } catch (error) {
+        res.status(404).json({message:error})
+    }
+})
+
+userRoutes.get("/recovery/:email", async (req,res) => {
+    // Traer todos los usuarios
+    const {email} = req.params
+    try {
+        const users = await recoveryPass(email)
+        Recovery(users)
         res.status(200).json(users)
     } catch (error) {
         res.status(404).json({message:error})
